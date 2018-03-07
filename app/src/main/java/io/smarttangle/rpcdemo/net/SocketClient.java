@@ -5,9 +5,6 @@ import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -15,7 +12,8 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.List;
 
-import io.smarttangle.rpcdemo.Model.Entity;
+import io.smarttangle.rpcdemo.model.BCErrorEntity;
+import io.smarttangle.rpcdemo.model.Entity;
 
 /**
  * Created by haijun on 2018/3/6.
@@ -82,7 +80,7 @@ public class SocketClient {
         sb.append(END);
         sb.append(postData);
         String requestString = sb.toString();
-        Log.d("SocketClient",requestString);
+        Log.d("SocketClient", requestString);
         os.write(requestString.getBytes());
         os.flush();
 
@@ -93,16 +91,30 @@ public class SocketClient {
         socket.close();
 
         T object = null;
-        if (response.startsWith("HTTP/1.1 200 OK")) {
+        if (response.startsWith("HTTP/1.1 200")) {
             int bodyIndex = response.indexOf(END + END);
             String body = response.substring(bodyIndex + 4, len - 1);
-            Log.d("SocketClient",body);
+            Log.d("SocketClient", body);
             ObjectMapper mapper = new ObjectMapper();
             try {
-                object = mapper.readValue(body, clazz);
+                if (body.indexOf("error") > 0) {
+                    BCErrorEntity errorEnrity = mapper.readValue(body, BCErrorEntity.class);
+                    errorEnrity.setStatus(200);
+                    object = (T)errorEnrity;
+                } else {
+                    object = mapper.readValue(body, clazz);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            BCErrorEntity errorEnrity = new BCErrorEntity();
+            int index = response.indexOf(END);
+            String line = response.substring(0, index);
+            String []element = line.split(" ");
+            String status = element[1];
+            errorEnrity.setStatus(Integer.parseInt(status));
+            object = (T)errorEnrity;
         }
         return object;
     }

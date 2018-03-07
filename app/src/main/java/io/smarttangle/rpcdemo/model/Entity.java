@@ -1,15 +1,15 @@
-package io.smarttangle.rpcdemo.Model;
+package io.smarttangle.rpcdemo.model;
+
+import java.io.Serializable;
 
 /**
  * Created by haijun on 2018/3/6.
  */
 
-public class BalanceEntity extends Entity {
+public class Entity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
-    public String result;
-
+    public String jsonrpc;
+    public String id;
 
     public String getJsonrpc() {
         return jsonrpc;
@@ -25,13 +25,5 @@ public class BalanceEntity extends Entity {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
     }
 }

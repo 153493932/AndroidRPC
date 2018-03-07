@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="@dimen/content_margin"
+              android:orientation="vertical"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="From Address:"
+        />
+
+    <TextView
+        android:id="@+id/tvMyAddress"
+        android:layout_marginTop="@dimen/content_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="--"
+        />
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To Address:"
+        />
+
+    <TextView
+        android:layout_marginTop="@dimen/content_margin"
+        android:id="@+id/tvDestAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="--"
+        />
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Amount:"
+        />
+
+    <TextView
+        android:layout_marginTop="@dimen/content_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1000Wei"
+        />
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Transfer Password"
+        />
+
+    <EditText
+        android:layout_marginTop="@dimen/content_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+    <Button
+        android:id="@+id/btTransfer"
+        android:layout_marginTop="@dimen/content_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        />
+</LinearLayout>

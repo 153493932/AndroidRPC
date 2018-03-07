@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.smarttangle.rpcdemo.MainActivity"
+    tools:context="io.smarttangle.rpcdemo.ui.MainActivity"
     >
 
     <android.support.design.widget.AppBarLayout
@@ -25,6 +25,15 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="bottom|start"
+        app:srcCompat="@android:drawable/ic_dialog_dialer"
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
