@@ -52,7 +52,7 @@ public class ProxyZonesActivity extends BaseActivity {
 
     private void initData() {
         datas = new ArrayList<String>();
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 20; i++) {
             datas.add("China");
             datas.add("USA");
         }

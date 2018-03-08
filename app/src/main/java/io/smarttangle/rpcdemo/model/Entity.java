@@ -1,5 +1,7 @@
 package io.smarttangle.rpcdemo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -8,7 +10,9 @@ import java.io.Serializable;
 
 public class Entity implements Serializable {
 
+    @JsonProperty
     public String jsonrpc;
+    @JsonProperty
     public String id;
 
     public String getJsonrpc() {

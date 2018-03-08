@@ -1,14 +1,12 @@
 package io.smarttangle.rpcdemo.ui;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.TextView;
 
 import io.smarttangle.rpcdemo.R;
 import io.smarttangle.rpcdemo.Utils.StorageKey;
-import io.smarttangle.rpcdemo.model.BCErrorEntity;
-import io.smarttangle.rpcdemo.model.BalanceEntity;
-import io.smarttangle.rpcdemo.model.BlockChainRequest;
+import io.smarttangle.rpcdemo.model.RPCEntity;
+import io.smarttangle.rpcdemo.model.BCRequest;
 import io.smarttangle.rpcdemo.model.UserStorageUtils;
 
 /**
@@ -25,24 +23,14 @@ public class MineActivity extends BaseActivity {
         final String address = UserStorageUtils.getObject(this, StorageKey.USER_ADDRESS);
         addressView.setText(address);
 
-        BlockChainRequest.getBalance(this, address, new BlockChainRequest.Listener<BalanceEntity>() {
+        BCRequest.getBalance(this, address, new BCRequest.Listener<RPCEntity>() {
 
             @Override
-            public void onResponse(final BalanceEntity response) {
+            public void onResponse(final RPCEntity response) {
                 TextView tvBalance = findViewById(R.id.tvBalance);
                 tvBalance.setText(response.getResult() + " Wei");
             }
-        }, new BlockChainRequest.ErrorListener() {
-            @Override
-            public void onError(BCErrorEntity error) {
-                TextView tvBalance = findViewById(R.id.tvBalance);
-                if (error.getStatus() == 200) {
-                    tvBalance.setText(error.getError().getMessage());
-                } else {
-                    tvBalance.setText("Network Error Status :" + error.getStatus());
-                }
-            }
-        });
+        }, null);
     }
 
 }

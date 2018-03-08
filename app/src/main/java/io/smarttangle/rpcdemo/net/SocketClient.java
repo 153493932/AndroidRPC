@@ -44,19 +44,22 @@ public class SocketClient {
         }
     }
 
-    public String buildPostData(String method, List<String> paramsList, String id) {
+    public String buildPostData(String method, List<String> paramsList, String jsonParams, String id) {
         StringBuffer params = new StringBuffer();
         params.append("{\"jsonrpc\":\"2.0\",\"method\":\"");
         params.append(method);
         params.append("\",\"params\":[");
-
+        if (jsonParams != null) {
+            params.append(jsonParams);
+            params.append(",");
+        }
         for (String param : paramsList) {
             params.append("\"");
             params.append(param);
             params.append("\"");
             params.append(",");
         }
-        if (paramsList.size() > 0) {
+        if (paramsList.size() > 0 || jsonParams != null) {
             params.deleteCharAt(params.length() - 1);
         }
         params.append("],\"id\":");
@@ -84,7 +87,7 @@ public class SocketClient {
         os.write(requestString.getBytes());
         os.flush();
 
-        byte[] rBuf = new byte[1024];
+        byte[] rBuf = new byte[3000];
         int len = is.read(rBuf);
         String response = new String(rBuf).substring(0, len);
         is.close();
@@ -100,7 +103,7 @@ public class SocketClient {
                 if (body.indexOf("error") > 0) {
                     BCErrorEntity errorEnrity = mapper.readValue(body, BCErrorEntity.class);
                     errorEnrity.setStatus(200);
-                    object = (T)errorEnrity;
+                    object = (T) errorEnrity;
                 } else {
                     object = mapper.readValue(body, clazz);
                 }
@@ -111,10 +114,10 @@ public class SocketClient {
             BCErrorEntity errorEnrity = new BCErrorEntity();
             int index = response.indexOf(END);
             String line = response.substring(0, index);
-            String []element = line.split(" ");
+            String[] element = line.split(" ");
             String status = element[1];
             errorEnrity.setStatus(Integer.parseInt(status));
-            object = (T)errorEnrity;
+            object = (T) errorEnrity;
         }
         return object;
     }

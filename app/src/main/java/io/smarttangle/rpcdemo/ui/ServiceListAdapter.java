@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import io.smarttangle.rpcdemo.R;
+import io.smarttangle.rpcdemo.model.PeerEntity;
 
 /**
  * Created by haijun on 2018/3/7.
@@ -17,7 +18,7 @@ import io.smarttangle.rpcdemo.R;
 
 public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.ServiceViewHolder> implements View.OnClickListener {
 
-    private List<String> datas;
+    private List<PeerEntity.Item> datas;
     private Context context;
     private LayoutInflater inflater;
 
@@ -29,7 +30,7 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
     private ServiceListAdapter.OnItemClickListener onItemClickListener = null;
 
 
-    public ServiceListAdapter(Context context, List<String> datas) {
+    public ServiceListAdapter(Context context, List<PeerEntity.Item> datas) {
         this.context = context;
         this.datas = datas;
         inflater = LayoutInflater.from(context);
@@ -43,7 +44,7 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
 
     @Override
     public void onBindViewHolder(ServiceViewHolder holder, final int position) {
-        holder.tv.setText(datas.get(position));
+        holder.tv.setText(datas.get(position).getIp());
         holder.itemView.setTag(position);
     }
 

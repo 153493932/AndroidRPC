@@ -2,7 +2,9 @@
 <manifest package="io.smarttangle.rpcdemo"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -48,7 +50,7 @@
         </activity>
 
         <activity
-            android:name=".ui.TransferActivity"
+            android:name=".ui.TransactionActivity"
             android:label="@string/transfer">
         </activity>
 
