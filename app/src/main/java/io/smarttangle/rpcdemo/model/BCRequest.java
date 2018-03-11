@@ -84,7 +84,7 @@ public class BCRequest {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                SocketClient client = new SocketClient(NetUtils.URL, new VpnService(), true);
+                SocketClient client = new SocketClient(NetUtils.URL, null, true);
                 try {
                     List<String> params = new ArrayList<>();
                     params.add(password);

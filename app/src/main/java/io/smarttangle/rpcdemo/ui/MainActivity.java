@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 
 import io.smarttangle.rpcdemo.R;
+import io.smarttangle.rpcdemo.Utils.NetUtils;
 import io.smarttangle.rpcdemo.Utils.StorageKey;
 import io.smarttangle.rpcdemo.model.BCRequest;
 import io.smarttangle.rpcdemo.model.PeerEntity;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         address = UserStorageUtils.getObject(MainActivity.this, StorageKey.USER_ADDRESS);
 
         if (!isRegistProxy) {
-            String ip = "198.168.1.3";//NetUtils.getLocalIp(this);
+            String ip = NetUtils.getLocalIp(this);
 
             if (ip != null && address != null) {
                 BCRequest.registerProxy(this, ip, address, new BCRequest.Listener<RPCEntity>() {

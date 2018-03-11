@@ -20,6 +20,7 @@
         android:id="@+id/evAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="0x91b0356d07adcc775b40c5d39bd089e7f12b7565"
         />
 
     <Button

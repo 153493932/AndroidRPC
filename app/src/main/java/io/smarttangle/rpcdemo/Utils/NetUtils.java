@@ -12,10 +12,10 @@ import android.net.wifi.WifiManager;
  */
 
 public class NetUtils {
-    //    public final static String URL = "http://47.254.28.11:8545/";
-    public final static String URL = "http://192.168.1.3:8545/";
+    //public final static String URL = "http://47.254.28.11:8545/";
+    public final static String URL = "http://39.104.59.126:8545/";
 
-    private static String getLocalIp(Activity activity) {
+    public static String getLocalIp(Activity activity) {
         String ip = null;
         ConnectivityManager conMann = (ConnectivityManager)
                 activity.getSystemService(Context.CONNECTIVITY_SERVICE);
